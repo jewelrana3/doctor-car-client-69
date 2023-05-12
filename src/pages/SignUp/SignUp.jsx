@@ -1,23 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import img from '../../assets/images/login/login.svg'
-import { createContext } from 'react';
-import { AuthContext } from '../../provider/AuthProvider';
+import { createContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
-const Login = () => {
 
-    const {signIn} = createContext(AuthContext)
+const SignUp = () => {
 
-    const handleLogin=event=>{
-        event.preventDefault();
+    const {createUser} = createContext(AuthContext)
+
+    const handleSignup=event=>{
+        event.preventDefault()
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
         console.log(name,email,password)
 
-        signIn(email,password)
+        createUser(email,password)
         .then(user=>{
-            const result = user.result;
+            const result = user.result
             console.log(result)
         }).catch(error=>console.log(error))
     }
@@ -29,8 +30,8 @@ const Login = () => {
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body">
-                        <h2 className='text-3xl font-bold'>Login</h2>
-                        <form onSubmit={handleLogin}>
+                        <h2 className='text-3xl font-bold'>Sign Up</h2>
+                        <form onSubmit={handleSignup}>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -46,13 +47,12 @@ const Login = () => {
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
-                            <div className="form-control mt-6">
-                               
-                                <input className="btn btn-primary" type="submit" value="Login" />
+                            <div className="form-control mt-6"> 
+                                <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
                         </form>
-                        <h2>Have an Already Account?
-                            <Link className='text-orange-600' to='/signup'>Sign Up</Link>
+                        <h2>New cars doctors Account?
+                        <Link className='text-orange-600' to='/login'>Login</Link>
                         </h2>
                     </div>
                 </div>
@@ -61,4 +61,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;

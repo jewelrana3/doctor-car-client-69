@@ -1,25 +1,26 @@
 import { Link } from "react-router-dom";
 import img from '../../assets/images/login/login.svg'
-import { createContext } from "react";
+
 import { AuthContext } from "../../provider/AuthProvider";
+import { useContext } from "react";
 
 
 const SignUp = () => {
 
-    const {createUser} = createContext(AuthContext)
+    const {createUser} = useContext(AuthContext)
 
     const handleSignup=event=>{
         event.preventDefault()
         const form = event.target;
-        const name = form.name.value;
+        // const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name,email,password)
+        console.log(email,password)
 
         createUser(email,password)
-        .then(user=>{
-            const result = user.result
-            console.log(result)
+        .then(result=>{
+            const user = result.user
+            console.log(user)
         }).catch(error=>console.log(error))
     }
     return (
@@ -42,7 +43,7 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" placeholder="password" name='password' className="input input-bordered" />
+                                <input type="password" placeholder="password" name='password' className="input input-bordered" />
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>

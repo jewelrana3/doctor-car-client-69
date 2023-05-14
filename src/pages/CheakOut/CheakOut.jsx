@@ -26,7 +26,7 @@ const CheakOut = () => {
       date,amount,
     }
     console.log(userOrder)
-    fetch('http://localhost:5000/cheakout',{
+    fetch('http://localhost:5000/out',{
       method:'POST',
       headers:{
         'content-type':'application/json'

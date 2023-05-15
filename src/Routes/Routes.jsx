@@ -28,12 +28,12 @@ const router = createBrowserRouter([
         },
         {
           path:'cheakout/:id',
-          element:<CheakOut></CheakOut>,
+          element:<PrivateRouter><CheakOut></CheakOut></PrivateRouter>,
           loader:({params})=>fetch(`http://localhost:5000/cars/${params.id}`)
         }
         ,
         {
-          path:'booking',
+          path:'out',
           element:<PrivateRouter><Booking></Booking></PrivateRouter>
         }
       ]

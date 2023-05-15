@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import BookingRow from "./BookingRow";
+import { useLocation } from "react-router-dom";
 
 
 
@@ -8,14 +9,28 @@ import BookingRow from "./BookingRow";
 const Booking = () => {
     const { user } = useContext(AuthContext);
     const [books, setBooks] = useState([])
+    const navigate = useLocation();
 
     const url = `http://localhost:5000/out?email=${user?.email}`
 
     useEffect(() => {
-        fetch(url)
+        fetch(url,{
+            method:'GET',
+            headers:{
+                authorization : `Bearer ${localStorage.getItem('access-token')}`
+            }
+        })
             .then(res => res.json())
-            .then(data => setBooks(data))
-    }, [url])
+            .then(data =>{ 
+                if(!data.error){
+                    setBooks(data)
+                }else{
+                    // logout and the navigate
+                    navigate('/')
+                }
+                
+            })
+    }, [url,navigate])
 
     const handleDelete=id=>{
         const prossed = confirm('Are you sure delete confrim')
@@ -28,6 +43,7 @@ const Booking = () => {
                 console.log(data)
                 const remaing = books.filter(booking => booking._id !== id)
                 setBooks(remaing)
+                
             })
         }
     }

@@ -1,12 +1,18 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
 
 import { AuthContext } from '../../provider/AuthProvider';
 import { useContext } from 'react';
+import SocialLogin from '../shared/SocialLogin/SocialLogin';
 
 const Login = () => {
 
-    const {signIn} = useContext(AuthContext)
+
+
+    const {singIn} = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/'
 
     const handleLogin=event=>{
         event.preventDefault();
@@ -16,14 +22,19 @@ const Login = () => {
         const password = form.password.value;
         console.log(email,password);
 
-
-        signIn(email, password)
+        singIn(email, password)
         .then(result => {
             const user = result.user;
             console.log(user);
+           
+           
+            navigate(from, { replace: true })
+           
         })
         .catch(error => console.log(error));
-    }
+}
+
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
@@ -56,6 +67,7 @@ const Login = () => {
                         </form>
                         <h2>Have an Already Account?
                             <Link className='text-orange-600' to='/signup'>Sign Up</Link>
+                            <SocialLogin></SocialLogin>
                         </h2>
                     </div>
                 </div>

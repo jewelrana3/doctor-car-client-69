@@ -40,7 +40,10 @@ const CheakOut = () => {
   }
  
   return (
-    <form onSubmit={handleLogin}>
+   <div>
+     <h2 className="text-3xl text-center">Book Now:{title}</h2>
+     <form onSubmit={handleLogin}>
+     
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div className="form-control">
           <label className="label">
@@ -73,6 +76,7 @@ const CheakOut = () => {
         </div>
       </div>
     </form>
+   </div>
 
   );
 };

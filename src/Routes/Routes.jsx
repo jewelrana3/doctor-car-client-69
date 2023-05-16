@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         {
           path:'cheakout/:id',
           element:<PrivateRouter><CheakOut></CheakOut></PrivateRouter>,
-          loader:({params})=>fetch(`http://localhost:5000/cars/${params.id}`)
+          loader:({params})=>fetch(`https://doctor-car-server-69-70.vercel.app/cars/${params.id}`)
         }
         ,
         {

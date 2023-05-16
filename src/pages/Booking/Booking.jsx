@@ -4,14 +4,12 @@ import BookingRow from "./BookingRow";
 import { useLocation } from "react-router-dom";
 
 
-
-
 const Booking = () => {
     const { user } = useContext(AuthContext);
     const [books, setBooks] = useState([])
     const navigate = useLocation();
 
-    const url = `http://localhost:5000/out?email=${user?.email}`
+    const url = `https://doctor-car-server-69-70.vercel.app/out?email=${user?.email}`
 
     useEffect(() => {
         fetch(url,{
@@ -35,7 +33,7 @@ const Booking = () => {
     const handleDelete=id=>{
         const prossed = confirm('Are you sure delete confrim')
         if(prossed){
-            fetch(`http://localhost:5000/out/${id}`,{
+            fetch(`https://doctor-car-server-69-70.vercel.app/out/${id}`,{
                 method:'DELETE'
             })
             .then(res=>res.json())
@@ -49,7 +47,7 @@ const Booking = () => {
     }
 
     const handleConfrim=id=>{
-        fetch(`http://localhost:5000/out/${id}`,{
+        fetch(`https://doctor-car-server-69-70.vercel.app/out/${id}`,{
             method:'PATCH',
             headers:{
                 'content-type':'application/json'

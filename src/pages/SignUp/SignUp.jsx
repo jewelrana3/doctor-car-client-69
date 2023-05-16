@@ -3,6 +3,7 @@ import img from '../../assets/images/login/login.svg'
 
 import { AuthContext } from "../../provider/AuthProvider";
 import { useContext } from "react";
+import SocialLogin from "../shared/SocialLogin/SocialLogin";
 
 
 const SignUp = () => {
@@ -53,8 +54,10 @@ const SignUp = () => {
                             </div>
                         </form>
                         <h2>New cars doctors Account?
-                        <Link className='text-orange-600' to='/login'>Login</Link>
+                            <Link className='text-orange-600' to='/login'>Login</Link>
+                            <SocialLogin></SocialLogin>
                         </h2>
+                       
                     </div>
                 </div>
             </div>

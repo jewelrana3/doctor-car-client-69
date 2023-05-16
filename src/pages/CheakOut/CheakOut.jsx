@@ -26,7 +26,7 @@ const CheakOut = () => {
       date,amount,
     }
     console.log(userOrder)
-    fetch('http://localhost:5000/out',{
+    fetch('https://doctor-car-server-69-70.vercel.app/out',{
       method:'POST',
       headers:{
         'content-type':'application/json'
@@ -71,10 +71,10 @@ const CheakOut = () => {
           <input type="text"  defaultValue={'$'+price} placeholder="amount" name='amount' className="input input-bordered" />
 
         </div>
-        <div className="form-control mt-6">
-         <input className="btn btn-primary btn-block" type="submit" value="Order Now" />
-        </div>
       </div>
+      <div className="form-control mt-6">
+          <button className="btn btn-primary btn-block">Order Now</button>
+        </div>
     </form>
    </div>
 
